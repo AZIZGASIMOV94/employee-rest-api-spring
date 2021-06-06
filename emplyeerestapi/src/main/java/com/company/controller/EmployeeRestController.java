@@ -7,6 +7,10 @@ import com.company.dto.EmployeeDTO;
 import com.company.dto.ResponseDTO;
 import com.company.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -16,7 +20,6 @@ import java.util.Optional;
 @RestController
 public class EmployeeRestController {
 
-
     @Autowired
     private EmployeeRepository empRepo;
 
@@ -24,14 +27,19 @@ public class EmployeeRestController {
     private EmployeeDaoInter empDaoInter;
 
     @GetMapping("/employees")
-    public ResponseEntity<List> getEmployees(){
-        //List<Employee> employees = empRepo.findAll();
-        List<Employee> employees = empDaoInter.getAllEmployees();
+    public ResponseEntity<List> getEmployees(
+            @RequestParam(defaultValue = "0") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "name", required = false) String sort){
 
-        List<EmployeeDTO> employeeDTOS =new ArrayList<>();
+        Pageable pageNumAndSize = PageRequest.of(pageNum, pageSize, Sort.by(sort).ascending());
+        Page<Employee> employees = empRepo.findAll(pageNumAndSize);
+        List<Employee> employeeList = employees.getContent();
 
-        for(int i=0;  i< employees.size(); i++){
-            Employee e = employees.get(i);
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+
+        for(int i=0;  i< employeeList.size(); i++){
+            Employee e = employeeList.get(i);
             employeeDTOS.add(new EmployeeDTO(e));
         }
         return ResponseEntity.ok(employeeDTOS);
