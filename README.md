@@ -69,3 +69,15 @@ It contains 2 layers of Spring project, EmployeeDbAppSpring is for Database Oper
 `DELETE /employee/id`
 
     http://localhost:8080/employeerest/employee/1
+
+
+## Pagination and Sorting
+`default to page number = 1, page size 10`
+
+`GET /employees`
+    set size: http://localhost:8080/employeerest/employees?pageSize=8
+    set number: http://localhost:8080/employeerest/employees?pageNum=2
+
+`default sort string is "name"`
+    `GET /employees`
+    set sort string http://localhost:8080/employeerest/employees?sortBy="name"

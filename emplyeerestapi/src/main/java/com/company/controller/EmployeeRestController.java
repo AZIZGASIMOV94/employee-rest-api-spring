@@ -28,7 +28,7 @@ public class EmployeeRestController {
 
     @GetMapping("/employees")
     public ResponseEntity<List> getEmployees(
-            @RequestParam(defaultValue = "0") Integer pageNum,
+            @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "name", required = false) String sort){
 
