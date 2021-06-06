@@ -72,12 +72,15 @@ It contains 2 layers of Spring project, EmployeeDbAppSpring is for Database Oper
 
 
 ## Pagination and Sorting
-`default to page number = 1, page size 10`
+`default to page number (pageNum) = 1, page size (pageSize) = 10`
 
 `GET /employees`
-    set size: http://localhost:8080/employeerest/employees?pageSize=8
-    set number: http://localhost:8080/employeerest/employees?pageNum=2
+
+    http://localhost:8080/employeerest/employees?pageSize=8
+
+    http://localhost:8080/employeerest/employees?pageNum=2
 
 `default sort string is "name"`
-    `GET /employees`
-    set sort string http://localhost:8080/employeerest/employees?sortBy="name"
+`GET /employees`
+
+    http://localhost:8080/employeerest/employees?sortBy="name"
