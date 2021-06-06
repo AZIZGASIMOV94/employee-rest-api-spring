@@ -9,7 +9,7 @@
 The REST API app is described below. 
 It contains 2 layers of Spring project, EmployeeDbAppSpring is for Database Operations and employeerestapi is for exposing the endpoints
 
-## Get list of Things
+## Get list of Employees
 
 ### Request
 
@@ -42,7 +42,7 @@ It contains 2 layers of Spring project, EmployeeDbAppSpring is for Database Oper
 
     http://localhost:8080/employeerest/employee/1
 
-## if get a non-existent Thing
+## if get a non-existent Employee
 
 ### Request
 
@@ -62,7 +62,7 @@ It contains 2 layers of Spring project, EmployeeDbAppSpring is for Database Oper
 
     http://localhost:8080/employeerest/employee/18
 
-## Delete a Thing
+## Delete an Employee
 
 ### Request
 
